@@ -1,0 +1,23 @@
+# Dependencies
+venv/
+__pycache__/
+*.pyc
+
+# Instance data
+instance/
+*.db
+
+# Uploads (user content)
+app/static/uploads/*
+!app/static/uploads/.gitkeep
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}{% if essay %}Edit: {{ title }}{% else %}New Essay{% endif %}{% endblock %}
+
+{% block content %}
+<h1>{% if essay %}Edit Essay{% else %}New Essay{% endif %}</h1>
+
+<form method="post" id="editor-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" value="{{ title }}" required maxlength="200">
+
+    <label for="body_md">Body (Markdown)</label>
+    <textarea name="body_md" id="body_md" rows="25">{{ body_md }}</textarea>
+
+    <p class="help-text">
+        Media: <code>!youtube[VIDEO_ID](start-end)</code> &middot;
+        <code>!audio[URL]</code> &middot;
+        <code>![alt](image-url)</code>
+    </p>
+
+    <!-- Image upload -->
+    <div class="upload-section">
+        <label for="file-upload">Upload image:</label>
+        <input type="file" id="file-upload" accept=".png,.jpg,.jpeg,.gif,.webp">
+        <span id="upload-status"></span>
+    </div>
+
+    <div class="editor-actions">
+        <button type="submit" name="draft" value="1">Save draft</button>
+        <button type="submit" name="publish" value="1">Publish</button>
+    </div>
+</form>
+
+{% if essay %}
+<form method="post" action="{{ url_for('essays.delete', essay_id=essay.id) }}" class="delete-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="delete-btn" onclick="return confirm('Delete this essay?')">Delete essay</button>
+</form>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Image upload handler
+document.getElementById('file-upload').addEventListener('change', async function() {
+    const file = this.files[0];
+    if (!file) return;
+
+    const status = document.getElementById('upload-status');
+    status.textContent = 'Uploading…';
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    // Get CSRF token
+    const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+
+    try {
+        const resp = await fetch('/upload', {
+            method: 'POST',
+            body: formData,
+            headers: { 'X-CSRFToken': csrfToken }
+        });
+        const data = await resp.json();
+        if (resp.ok) {
+            const textarea = document.getElementById('body_md');
+            const markdown = `![image](${data.url})\n`;
+            textarea.value += markdown;
+            status.textContent = 'Uploaded!';
+        } else {
+            status.textContent = data.error || 'Upload failed.';
+        }
+    } catch (e) {
+        status.textContent = 'Upload failed.';
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,247 @@
+/* Minimal stylesheet — plain and functional, meant to be replaced with custom designs later */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    color: #222;
+    background: #fefefe;
+}
+
+header nav {
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+header nav a {
+    margin-right: 1rem;
+    color: #555;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.3rem; }
+
+a { color: #336; }
+
+.meta {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.essay-list {
+    list-style: none;
+    padding: 0;
+}
+
+.essay-list li {
+    margin-bottom: 0.8rem;
+}
+
+.essay-body {
+    margin: 1.5rem 0;
+}
+
+.essay-body p,
+.essay-body blockquote,
+.essay-body ul,
+.essay-body ol,
+.essay-body pre {
+    margin-bottom: 1rem;
+}
+
+.essay-body blockquote {
+    border-left: 3px solid #ccc;
+    padding-left: 1rem;
+    color: #555;
+}
+
+.essay-body img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Commentable sections */
+.commentable {
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    padding-left: 0.5rem;
+    transition: border-color 0.2s;
+}
+
+.commentable:hover {
+    border-left-color: #aac;
+}
+
+.has-comments {
+    border-left-color: #88a;
+}
+
+/* Media embeds */
+.media-embed {
+    margin: 1.5rem 0;
+}
+
+.media-youtube iframe {
+    max-width: 100%;
+}
+
+/* Comments */
+.comments-section {
+    margin-top: 3rem;
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
+}
+
+.comment {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: #f9f9f9;
+    border-radius: 3px;
+}
+
+.comment-meta {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+#comment-form-container {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+}
+
+#comment-form input[type="text"],
+#comment-form textarea {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Eye */
+.eye-section {
+    margin: 2rem 0;
+}
+
+.eye-btn {
+    font-size: 1.5rem;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0.3rem 0.8rem;
+}
+
+.eye-btn:hover {
+    background: #f0f0f0;
+}
+
+/* Forms */
+label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    display: block;
+    width: 100%;
+    margin: 0.3rem 0 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+textarea#body_md {
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #a33;
+    cursor: pointer;
+}
+
+.badge {
+    font-size: 0.75rem;
+    background: #eee;
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+}
+
+.inline {
+    display: inline;
+}
+
+.flash {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+}
+
+.flash-error { background: #fee; color: #a33; }
+.flash-success { background: #efe; color: #3a3; }
+
+.help-text {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.upload-section {
+    margin: 1rem 0;
+}
+
+.editor-actions {
+    margin-top: 1rem;
+}
+
+.small {
+    font-size: 0.8rem;
+}
+
+footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    color: #999;
+    font-size: 0.8rem;
+}

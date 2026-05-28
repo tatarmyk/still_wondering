@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Drafts{% endblock %}
+
+{% block content %}
+<h1>All Essays</h1>
+
+<ul class="essay-list">
+{% for essay in essays %}
+    <li>
+        <a href="{{ url_for('essays.view', essay_id=essay.id) }}">{{ essay.title }}</a>
+        {% if not essay.published %}<span class="badge">draft</span>{% endif %}
+        <span class="meta">{{ essay.created_at.strftime('%d %b %Y') }}</span>
+        <a href="{{ url_for('essays.edit', essay_id=essay.id) }}" class="small">[edit]</a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Essays{% endblock %}
+
+{% block content %}
+<h1>Essays</h1>
+
+{% if essays %}
+    <ul class="essay-list">
+    {% for essay in essays %}
+        <li>
+            <a href="{{ url_for('essays.view', essay_id=essay.id) }}">{{ essay.title }}</a>
+            <span class="meta">
+                {{ essay.created_at.strftime('%d %b %Y') }}
+                &middot; {{ essay.eye_count or 0 }} &#x1F441;
+            </span>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No essays yet.</p>
+{% endif %}
+{% endblock %}
